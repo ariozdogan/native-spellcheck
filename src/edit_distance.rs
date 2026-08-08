@@ -1,15 +1,18 @@
-use std::{collections::{HashMap, HashSet}, mem::transmute, usize};
+use std::{collections::{HashMap, HashSet}, usize};
 
 
-pub fn deletion(mut user_input: String) -> HashSet<String> {
+pub fn deletion(user_input: String) -> HashSet<String> {
   let mut deletion_set: HashSet<String> = HashSet::new();
-  let string_length: usize = user_input.len();
 
-  for c in 0..string_length {
-    let original_char: String = user_input[c..c+1].to_string();
-    user_input.replace_range(c..c+1, "");
-    deletion_set.insert(user_input.clone()); 
-    user_input.replace_range(c..c+1, &original_char);
+  let chars: Vec<char> = user_input.chars().collect();
+  let chars_length = chars.len();
+
+  for c in 0..chars_length-1 {
+    let mut temp_chars: Vec<char> = chars.clone();
+
+    temp_chars.remove(c);
+    let modified_string: String = temp_chars.iter().collect();
+    deletion_set.insert(modified_string);
   }
 
   deletion_set
@@ -19,7 +22,7 @@ pub fn insertion(mut user_input: String) -> HashSet<String> {
   let mut insertion_set: HashSet<String> = HashSet::new();
   let string_length: usize = user_input.len();
 
-  for c in 0..string_length {
+  for c in 0..string_length-1 {
     for l in 'a'..='z' {
       user_input.insert(c, l);
       insertion_set.insert(user_input.clone());
@@ -34,7 +37,7 @@ pub fn substitution(mut user_input: String) -> HashSet<String> {
   let mut substitution_set: HashSet<String> = HashSet::new();
   let string_length: usize = user_input.len();
 
-  for c in 0..string_length {
+  for c in 0..string_length-1 {
     let original_char: String = user_input[c..c+1].to_string();
     for l in 'a'..='z' {
       let mut buf: [u8; 4] = [0; 4];
@@ -47,12 +50,12 @@ pub fn substitution(mut user_input: String) -> HashSet<String> {
   substitution_set
 }
 
-pub fn transposition(mut user_input: String) -> HashSet<String> {
+pub fn transposition(user_input: String) -> HashSet<String> {
   let mut transposition_set: HashSet<String> = HashSet::new();
   let string_length: usize = user_input.len();
   let mut string_vector: Vec<char> = user_input.chars().collect();
 
-  for c in 0..string_length {
+  for c in 0..string_length-1 {
     string_vector.swap(c, c+1);
     transposition_set.insert(string_vector.iter().collect());
     string_vector.swap(c, c+1);

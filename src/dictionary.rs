@@ -6,7 +6,7 @@ use std::collections::HashMap;
 pub fn load_dictionary() -> HashMap<String, u64> {
   let mut word_dictionary: HashMap<String, u64> = HashMap::new();
 
-  let file: File = File::open("data/count_1w.txt").expect("Could not open file");
+  let file: File = File::open("data/google-10000-english-freq.txt").expect("Could not open file");
   let reader: BufReader<File> = BufReader::new(file);
 
   for line in reader.lines() {
@@ -22,7 +22,7 @@ pub fn load_dictionary() -> HashMap<String, u64> {
   word_dictionary
 }
 
-pub fn lookup_word(user_input: String, word_dictionary: HashMap<String, u64>) -> bool {
+pub fn lookup_word(user_input: String, word_dictionary: &HashMap<String, u64>) -> bool {
   let contains_word: bool;
 
   let cleaned_input: String = user_input // strip spaces and punctuation, and turn to lowercase
