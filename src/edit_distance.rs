@@ -7,7 +7,7 @@ pub fn deletion(user_input: String) -> HashSet<String> {
   let chars: Vec<char> = user_input.chars().collect();
   let chars_length = chars.len();
 
-  for c in 0..chars_length-1 {
+  for c in 0..chars_length {
     let mut temp_chars: Vec<char> = chars.clone();
 
     temp_chars.remove(c);
@@ -37,7 +37,7 @@ pub fn substitution(mut user_input: String) -> HashSet<String> {
   let mut substitution_set: HashSet<String> = HashSet::new();
   let string_length: usize = user_input.len();
 
-  for c in 0..string_length-1 {
+  for c in 0..string_length {
     let original_char: String = user_input[c..c+1].to_string();
     for l in 'a'..='z' {
       let mut buf: [u8; 4] = [0; 4];

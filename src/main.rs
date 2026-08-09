@@ -2,9 +2,11 @@ use std::collections::{HashMap, HashSet};
 mod dictionary;
 mod edit_distance;
 mod ranker;
+mod keyboard_map;
+mod edit_cost;
 
 fn main() {
-  let user_input: String = String::from("probram");
+  let user_input: String = String::from("jig");
 
   let word_dictionary: HashMap<String, u64> = dictionary::load_dictionary();
 
@@ -32,6 +34,4 @@ fn main() {
   }
 
   
-
-
 }
