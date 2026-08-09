@@ -4,7 +4,7 @@ mod edit_distance;
 mod ranker;
 
 fn main() {
-  let user_input: String = String::from("col");
+  let user_input: String = String::from("probram");
 
   let word_dictionary: HashMap<String, u64> = dictionary::load_dictionary();
 

@@ -22,7 +22,7 @@ pub fn insertion(mut user_input: String) -> HashSet<String> {
   let mut insertion_set: HashSet<String> = HashSet::new();
   let string_length: usize = user_input.len();
 
-  for c in 0..string_length-1 {
+  for c in 0..string_length+1 {
     for l in 'a'..='z' {
       user_input.insert(c, l);
       insertion_set.insert(user_input.clone());
