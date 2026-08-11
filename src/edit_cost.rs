@@ -1,11 +1,13 @@
 use std::collections::HashMap;
 
 
-pub fn edit_score(original_char: char, edited_char: char, frequency: u64, adjacency_map: HashMap<char, Vec<char>>) -> f64 {
-    let mut edit_cost: f64;
+pub fn edit_score(in_dictionary_frequency_score: Vec<(String, u64, f64)>) -> Vec<(String, u64, f64)> {
+    let mut scored_candidates: Vec<(String, u64, f64)> = Vec::new();
 
-
-    let score: f64 = frequency as f64 / edit_cost;
-
-    score
+    for (word, frequency, edit_cost) in in_dictionary_frequency_score {
+        let edit_score_value: f64 = frequency as f64 / edit_cost;
+        scored_candidates.push((word, frequency, edit_score_value));
+    }
+    
+    scored_candidates
 }
