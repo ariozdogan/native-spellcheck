@@ -1,10 +1,10 @@
-use std::{collections::{HashMap, HashSet}, usize};
-use crate::keyboard_map;
+use std::{collections::HashMap, hash::Hash, usize};
+use crate::{edit_distance, keyboard_map};
 
 
-pub fn deletion(user_input: String) -> HashMap<String, f64> {
+pub fn deletion(user_input: String, mut edit_cost: f64) -> HashMap<String, f64> {
   let mut deletion_set: HashMap<String, f64> = HashMap::new();
-  let edit_cost: f64 = 2.0;
+  edit_cost += 2.0;
 
   let chars: Vec<char> = user_input.chars().collect();
   let chars_length = chars.len();
@@ -20,10 +20,10 @@ pub fn deletion(user_input: String) -> HashMap<String, f64> {
   deletion_set
 }
 
-pub fn insertion(mut user_input: String) -> HashMap<String, f64> {
+pub fn insertion(mut user_input: String, mut edit_cost: f64) -> HashMap<String, f64> {
   let mut insertion_set: HashMap<String, f64> = HashMap::new();
   let string_length: usize = user_input.len();
-  let edit_cost: f64 = 2.0;
+  edit_cost += 2.0;
 
   for c in 0..string_length+1 {
     for l in 'a'..='z' {
@@ -36,11 +36,10 @@ pub fn insertion(mut user_input: String) -> HashMap<String, f64> {
   insertion_set
 }
 
-pub fn substitution(mut user_input: String) -> HashMap<String, f64> {
+pub fn substitution(mut user_input: String, mut edit_cost: f64) -> HashMap<String, f64> {
   let mut substitution_set: HashMap<String, f64> = HashMap::new();
   let string_length: usize = user_input.len();
   let mut char_adjacent: bool;
-  let mut edit_cost: f64;
 
   for c in 0..string_length {
     let original_input: String = user_input[c..c+1].to_string();
@@ -52,10 +51,10 @@ pub fn substitution(mut user_input: String) -> HashMap<String, f64> {
       char_adjacent = keyboard_map::is_adjacent(original_input.chars().next().unwrap(), l);
 
       if char_adjacent {
-        edit_cost = 1.0;
+        edit_cost += 1.0;
       }
       else {
-        edit_cost = 2.0;
+        edit_cost += 2.0;
       }
 
       substitution_set.insert(user_input.clone(), edit_cost);
@@ -69,11 +68,11 @@ pub fn substitution(mut user_input: String) -> HashMap<String, f64> {
   substitution_set
 }
 
-pub fn transposition(user_input: String) -> HashMap<String, f64> {
+pub fn transposition(user_input: String, mut edit_cost: f64) -> HashMap<String, f64> {
   let mut transposition_set: HashMap<String, f64> = HashMap::new();
   let string_length: usize = user_input.len();
   let mut string_vector: Vec<char> = user_input.chars().collect();
-  let edit_cost: f64 = 0.8; // most common typing mistake
+  edit_cost += 0.8; // most common typing mistake
 
   for c in 0..string_length-1 {
     string_vector.swap(c, c+1);
@@ -84,14 +83,22 @@ pub fn transposition(user_input: String) -> HashMap<String, f64> {
   transposition_set
 }
 
+pub fn generate_all_edits(user_input: String, edit_cost: f64) -> HashMap<String, f64> {
+  let mut all_candidates: HashMap<String, f64> = HashMap::new();
+
+  all_candidates.extend(deletion(user_input.clone(), edit_cost));
+  all_candidates.extend(insertion(user_input.clone(), edit_cost));
+  all_candidates.extend(substitution(user_input.clone(), edit_cost));
+  all_candidates.extend(transposition(user_input.clone(), edit_cost));
+
+  all_candidates
+}
+
 pub fn search_dictionary(
   word_dictionary: &HashMap<String, u64>, 
-  deletion_set: HashMap<String, f64>, 
-  insertion_set: HashMap<String, f64>, 
-  substitution_set: HashMap<String, f64>, 
-  transposition_set: HashMap<String, f64>) 
+  all_candidates: HashMap<String, f64>) 
   -> HashMap<String, f64> {
-  let all_vector: Vec<HashMap<String, f64>> = vec![deletion_set, insertion_set, substitution_set, transposition_set];
+  let all_vector: Vec<HashMap<String, f64>> = vec![all_candidates];
 
   let all_norvig_sets: HashMap<String, f64> = all_vector
     .into_iter()

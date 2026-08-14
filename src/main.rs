@@ -1,4 +1,5 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, hash::Hash};
+use spellcheck::edit_distance::generate_all_edits;
 mod dictionary;
 mod edit_distance;
 mod ranker;
@@ -7,20 +8,26 @@ mod edit_cost;
 
 
 fn main() {
-  let user_input: String = String::from("vlue");
-
+  let user_input: String = String::from("sdofi");
   let word_dictionary: HashMap<String, u64> = dictionary::load_dictionary();
-
   let contains_word: bool = dictionary::lookup_word(user_input.clone(), &word_dictionary);
+  let edit_cost: f64 = 0.0;
 
 
   if !contains_word {
-    let deletion_set: HashMap<String, f64> = edit_distance::deletion(user_input.clone());
-    let insertion_set: HashMap<String, f64> = edit_distance::insertion(user_input.clone());
-    let substitution_set: HashMap<String, f64> = edit_distance::substitution(user_input.clone());
-    let transposition_set: HashMap<String, f64> = edit_distance::transposition(user_input.clone());
+    let all_candidates: HashMap<String, f64> = generate_all_edits(user_input, edit_cost);
+    let mut all_candidates_2: HashMap<String, f64> = HashMap::new();
 
-    let in_dictionary: HashMap<String, f64> = edit_distance::search_dictionary(&word_dictionary, deletion_set, insertion_set, substitution_set, transposition_set);
+    let mut in_dictionary: HashMap<String, f64> = edit_distance::search_dictionary(&word_dictionary, all_candidates.clone());
+
+    if in_dictionary.len() == 0 {
+      for key in all_candidates.keys() {
+        let all_candidates_iteration: &str = &key;
+        let generate_second_edit: HashMap<String, f64> = generate_all_edits(all_candidates_iteration.to_string(), edit_cost);
+        all_candidates_2.extend(generate_second_edit);
+      }
+      in_dictionary = edit_distance::search_dictionary(&word_dictionary, all_candidates_2)
+    }
 
     let in_dictionary_frequency_score: Vec<(String, u64, f64)> = ranker::combine_frequency_score(in_dictionary, &word_dictionary);
 

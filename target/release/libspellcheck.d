@@ -1,0 +1,1 @@
+/Users/ariozdogan/native-spellcheck/target/release/libspellcheck.rlib: /Users/ariozdogan/native-spellcheck/src/dictionary.rs /Users/ariozdogan/native-spellcheck/src/edit_distance.rs /Users/ariozdogan/native-spellcheck/src/keyboard_map.rs /Users/ariozdogan/native-spellcheck/src/lib.rs /Users/ariozdogan/native-spellcheck/src/ranker.rs
