@@ -40,9 +40,10 @@ pub fn build_adjacency_map() -> HashMap<char, Vec<char>> {
 pub fn is_adjacent(user_input: char, edit: char) -> bool {
     let letters_adjacency_map: HashMap<char, Vec<char>> = build_adjacency_map();
 
-    let letters_adjacent: bool = letters_adjacency_map.get(&user_input)
-                                                      .map(|vec: &Vec<char>| vec.contains(&edit))
-                                                      .unwrap_or(false);
+    let letters_adjacent: bool = letters_adjacency_map
+        .get(&user_input)
+        .map(|vec: &Vec<char>| vec.contains(&edit))
+        .unwrap_or(false);
 
     letters_adjacent
 }

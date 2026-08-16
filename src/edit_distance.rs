@@ -1,5 +1,5 @@
-use std::{collections::HashMap, hash::Hash, usize};
-use crate::{edit_distance, keyboard_map};
+use std::{collections::HashMap, usize};
+use crate::keyboard_map;
 
 
 pub fn deletion(user_input: String, mut edit_cost: f64) -> HashMap<String, f64> {

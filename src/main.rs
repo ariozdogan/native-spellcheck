@@ -1,4 +1,6 @@
-use std::{collections::HashMap, hash::Hash};
+use std::sync::{Arc, Mutex};
+use rdev::{listen, Event};
+use std::collections::HashMap;
 use spellcheck::edit_distance::generate_all_edits;
 mod dictionary;
 mod edit_distance;
@@ -8,7 +10,45 @@ mod edit_cost;
 
 
 fn main() {
-  let user_input: String = String::from("sdofi");
+  let user_word: Arc<Mutex<String>> = Arc::new(Mutex::new(String::new()));
+  let user_word_clone = Arc::clone(&user_word);
+
+  let callback = move |event: Event| {
+    keystrokes(event, &user_word_clone);
+  };
+
+  if let Err(error) = listen(callback) {
+  println!("Error: {:?}", error)
+  }
+}
+
+fn callback(event: Event) {
+  println!("My callback {:?}", event);
+  match event.name {
+    Some(string) => println!("User wrote {:?}", string),
+    None => (),
+  }
+}
+
+fn keystrokes(event: Event, user_word: &Arc<Mutex<String>>) {
+  match event.name {
+    Some(user_char) => {
+      if !user_char.chars().all(char::is_alphabetic) {
+        let mut word = user_word.lock().unwrap();
+        println!("Completed word: {}", *word);
+        word.clear();
+      }
+      else {
+        user_word.lock().unwrap().push_str(&user_char);
+      }  
+    },
+    None => (),
+  }
+}
+
+
+fn test_misspelling() {
+  let user_input: String = String::from("disv");
   let word_dictionary: HashMap<String, u64> = dictionary::load_dictionary();
   let contains_word: bool = dictionary::lookup_word(user_input.clone(), &word_dictionary);
   let edit_cost: f64 = 0.0;
@@ -41,6 +81,5 @@ fn main() {
   else {
     println!("'{}' is in the dictionary", user_input);
   }
-
   
 }
