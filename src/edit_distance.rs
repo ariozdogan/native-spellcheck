@@ -72,7 +72,7 @@ pub fn transposition(user_input: String, mut edit_cost: f64) -> HashMap<String, 
   let mut transposition_set: HashMap<String, f64> = HashMap::new();
   let string_length: usize = user_input.len();
   let mut string_vector: Vec<char> = user_input.chars().collect();
-  edit_cost += 0.8; // most common typing mistake
+  edit_cost += 0.5; // most common typing mistake
 
   for c in 0..string_length-1 {
     string_vector.swap(c, c+1);
@@ -83,7 +83,7 @@ pub fn transposition(user_input: String, mut edit_cost: f64) -> HashMap<String, 
   transposition_set
 }
 
-pub fn generate_all_edits(user_input: String, edit_cost: f64) -> HashMap<String, f64> {
+pub fn generate_all_edits(user_input: &String, edit_cost: f64) -> HashMap<String, f64> {
   let mut all_candidates: HashMap<String, f64> = HashMap::new();
 
   all_candidates.extend(deletion(user_input.clone(), edit_cost));
