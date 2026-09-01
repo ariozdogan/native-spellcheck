@@ -1,4 +1,4 @@
-use std::sync::{Arc, Mutex};
+use std::{sync::{Arc, Mutex}, thread};
 use rdev::{listen, Event};
 use std::collections::HashMap;
 use spellcheck::edit_distance::generate_all_edits;
@@ -7,19 +7,25 @@ mod edit_distance;
 mod ranker;
 mod keyboard_map;
 mod edit_cost;
+mod tray;
 
 
 fn main() {
   let user_word: Arc<Mutex<String>> = Arc::new(Mutex::new(String::new()));
   let user_word_clone = Arc::clone(&user_word);
 
-  let callback = move |event: Event| {
-    keystrokes(event, &user_word_clone);
-  };
+  thread::spawn(|| {
+    let callback = move |event: Event| {
+      keystrokes(event, &user_word_clone);
+    };
 
-  if let Err(error) = listen(callback) {
-  println!("Error: {:?}", error)
-  }
+    if let Err(error) = listen(callback) {
+      rintln!("Error: {:?}", error)
+    }
+  });
+
+  tray::build_tray_icon();
+
 }
 
 fn callback(event: Event) {
