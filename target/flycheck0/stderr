@@ -1,5 +1,5 @@
-   0.048773300s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint: fingerprint error for spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck)/Check { test: false }/TargetInner { name_inferred: true, ..: lib_target("spellcheck", ["lib"], "C:\\Users\\arioz\\native-spellcheck\\src\\lib.rs", Edition2024) }
-   0.048825100s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\spellcheck-8440432b8b832929\lib-spellcheck`
+   0.044810100s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint: fingerprint error for spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck)/Check { test: false }/TargetInner { name_inferred: true, ..: lib_target("spellcheck", ["lib"], "C:\\Users\\arioz\\native-spellcheck\\src\\lib.rs", Edition2024) }
+   0.044905100s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\spellcheck-8440432b8b832929\lib-spellcheck`
 
 Caused by:
     The system cannot find the file specified. (os error 2)
@@ -26,8 +26,8 @@ Stack backtrace:
   18: git_midx_writer_dump
   19: BaseThreadInitThunk
   20: RtlUserThreadStart
-   0.055085100s  INFO prepare_target{force=false package_id=core-foundation v0.10.1 target="core_foundation"}: cargo::core::compiler::fingerprint: fingerprint error for core-foundation v0.10.1/Check { test: false }/TargetInner { ..: lib_target("core_foundation", ["lib"], "C:\\Users\\arioz\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\core-foundation-0.10.1\\src\\lib.rs", Edition2021) }
-   0.055106900s  INFO prepare_target{force=false package_id=core-foundation v0.10.1 target="core_foundation"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\core-foundation-30d5705c079a8e1e\lib-core_foundation`
+   0.052976200s  INFO prepare_target{force=false package_id=core-foundation v0.10.1 target="core_foundation"}: cargo::core::compiler::fingerprint: fingerprint error for core-foundation v0.10.1/Check { test: false }/TargetInner { ..: lib_target("core_foundation", ["lib"], "C:\\Users\\arioz\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\core-foundation-0.10.1\\src\\lib.rs", Edition2021) }
+   0.052993100s  INFO prepare_target{force=false package_id=core-foundation v0.10.1 target="core_foundation"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\core-foundation-30d5705c079a8e1e\lib-core_foundation`
 
 Caused by:
     The system cannot find the file specified. (os error 2)
@@ -55,8 +55,8 @@ Stack backtrace:
   19: git_midx_writer_dump
   20: BaseThreadInitThunk
   21: RtlUserThreadStart
-   0.056332300s  INFO prepare_target{force=false package_id=core-graphics v0.25.0 target="core_graphics"}: cargo::core::compiler::fingerprint: fingerprint error for core-graphics v0.25.0/Check { test: false }/TargetInner { ..: lib_target("core_graphics", ["lib"], "C:\\Users\\arioz\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\core-graphics-0.25.0\\src\\lib.rs", Edition2021) }
-   0.056347400s  INFO prepare_target{force=false package_id=core-graphics v0.25.0 target="core_graphics"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\core-graphics-aec7a9bc81d02fdf\lib-core_graphics`
+   0.054056900s  INFO prepare_target{force=false package_id=core-graphics v0.25.0 target="core_graphics"}: cargo::core::compiler::fingerprint: fingerprint error for core-graphics v0.25.0/Check { test: false }/TargetInner { ..: lib_target("core_graphics", ["lib"], "C:\\Users\\arioz\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\core-graphics-0.25.0\\src\\lib.rs", Edition2021) }
+   0.054071300s  INFO prepare_target{force=false package_id=core-graphics v0.25.0 target="core_graphics"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\core-graphics-aec7a9bc81d02fdf\lib-core_graphics`
 
 Caused by:
     The system cannot find the file specified. (os error 2)
@@ -84,8 +84,8 @@ Stack backtrace:
   19: git_midx_writer_dump
   20: BaseThreadInitThunk
   21: RtlUserThreadStart
-   0.057265500s  INFO prepare_target{force=false package_id=core-graphics-types v0.2.0 target="core_graphics_types"}: cargo::core::compiler::fingerprint: fingerprint error for core-graphics-types v0.2.0/Check { test: false }/TargetInner { ..: lib_target("core_graphics_types", ["lib"], "C:\\Users\\arioz\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\core-graphics-types-0.2.0\\src\\lib.rs", Edition2018) }
-   0.057279900s  INFO prepare_target{force=false package_id=core-graphics-types v0.2.0 target="core_graphics_types"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\core-graphics-types-ba000a17f45b14cf\lib-core_graphics_types`
+   0.054936900s  INFO prepare_target{force=false package_id=core-graphics-types v0.2.0 target="core_graphics_types"}: cargo::core::compiler::fingerprint: fingerprint error for core-graphics-types v0.2.0/Check { test: false }/TargetInner { ..: lib_target("core_graphics_types", ["lib"], "C:\\Users\\arioz\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\core-graphics-types-0.2.0\\src\\lib.rs", Edition2018) }
+   0.054950800s  INFO prepare_target{force=false package_id=core-graphics-types v0.2.0 target="core_graphics_types"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\core-graphics-types-ba000a17f45b14cf\lib-core_graphics_types`
 
 Caused by:
     The system cannot find the file specified. (os error 2)
@@ -114,8 +114,8 @@ Stack backtrace:
   20: git_midx_writer_dump
   21: BaseThreadInitThunk
   22: RtlUserThreadStart
-   0.059020500s  INFO prepare_target{force=false package_id=objc2 v0.6.4 target="objc2"}: cargo::core::compiler::fingerprint: fingerprint error for objc2 v0.6.4/Check { test: false }/TargetInner { ..: lib_target("objc2", ["lib"], "C:\\Users\\arioz\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\objc2-0.6.4\\src\\lib.rs", Edition2021) }
-   0.059034400s  INFO prepare_target{force=false package_id=objc2 v0.6.4 target="objc2"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\objc2-ae0fc803d3862d6d\lib-objc2`
+   0.056617100s  INFO prepare_target{force=false package_id=objc2 v0.6.4 target="objc2"}: cargo::core::compiler::fingerprint: fingerprint error for objc2 v0.6.4/Check { test: false }/TargetInner { ..: lib_target("objc2", ["lib"], "C:\\Users\\arioz\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\objc2-0.6.4\\src\\lib.rs", Edition2021) }
+   0.056630400s  INFO prepare_target{force=false package_id=objc2 v0.6.4 target="objc2"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\objc2-ae0fc803d3862d6d\lib-objc2`
 
 Caused by:
     The system cannot find the file specified. (os error 2)
@@ -143,8 +143,8 @@ Stack backtrace:
   19: git_midx_writer_dump
   20: BaseThreadInitThunk
   21: RtlUserThreadStart
-   0.063349700s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint: fingerprint error for spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck)/Check { test: true }/TargetInner { name_inferred: true, ..: lib_target("spellcheck", ["lib"], "C:\\Users\\arioz\\native-spellcheck\\src\\lib.rs", Edition2024) }
-   0.063365200s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\spellcheck-78e60f3866ead9d7\test-lib-spellcheck`
+   0.060921800s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint: fingerprint error for spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck)/Check { test: true }/TargetInner { name_inferred: true, ..: lib_target("spellcheck", ["lib"], "C:\\Users\\arioz\\native-spellcheck\\src\\lib.rs", Edition2024) }
+   0.060939900s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\spellcheck-78e60f3866ead9d7\test-lib-spellcheck`
 
 Caused by:
     The system cannot find the file specified. (os error 2)
@@ -171,8 +171,8 @@ Stack backtrace:
   18: git_midx_writer_dump
   19: BaseThreadInitThunk
   20: RtlUserThreadStart
-   0.063639500s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint: fingerprint error for spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck)/Check { test: false }/TargetInner { name: "spellcheck", doc: true, ..: with_path("C:\\Users\\arioz\\native-spellcheck\\src\\main.rs", Edition2024) }
-   0.063653900s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\spellcheck-9e9c271c2e87524f\bin-spellcheck`
+   0.061211600s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint: fingerprint error for spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck)/Check { test: false }/TargetInner { name: "spellcheck", doc: true, ..: with_path("C:\\Users\\arioz\\native-spellcheck\\src\\main.rs", Edition2024) }
+   0.061224400s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\spellcheck-9e9c271c2e87524f\bin-spellcheck`
 
 Caused by:
     The system cannot find the file specified. (os error 2)
@@ -199,8 +199,8 @@ Stack backtrace:
   18: git_midx_writer_dump
   19: BaseThreadInitThunk
   20: RtlUserThreadStart
-   0.063917200s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint: fingerprint error for spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck)/Check { test: true }/TargetInner { name: "spellcheck", doc: true, ..: with_path("C:\\Users\\arioz\\native-spellcheck\\src\\main.rs", Edition2024) }
-   0.063930400s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\spellcheck-3f326b47079746a3\test-bin-spellcheck`
+   0.061446700s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint: fingerprint error for spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck)/Check { test: true }/TargetInner { name: "spellcheck", doc: true, ..: with_path("C:\\Users\\arioz\\native-spellcheck\\src\\main.rs", Edition2024) }
+   0.061460300s  INFO prepare_target{force=false package_id=spellcheck v0.1.0 (C:\Users\arioz\native-spellcheck) target="spellcheck"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\arioz\native-spellcheck\target\debug\.fingerprint\spellcheck-3f326b47079746a3\test-bin-spellcheck`
 
 Caused by:
     The system cannot find the file specified. (os error 2)

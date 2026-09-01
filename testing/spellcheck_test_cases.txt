@@ -8,7 +8,6 @@ helo	hello
 wrd	word
 hapy	happy
 figt	fight
-t3st	test
 hxllo	hello
 qord	word
 happz	happy
