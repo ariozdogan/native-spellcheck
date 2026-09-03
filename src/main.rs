@@ -1,21 +1,57 @@
 use std::sync::{Arc, Mutex};
 use std::{thread, time};
-use rdev::{listen, Event, simulate, Button, EventType, SimulateError, Key};
+use rdev::{listen, Event, simulate, EventType, Key};
+use tray_icon::{TrayIconBuilder, TrayIconEvent, Icon, menu::{Menu, MenuEvent}};
+use tao::event_loop::{ControlFlow, EventLoopBuilder};
 use spellcheck::{handle_completed_word};
+use crate::tray::build_tray_icon;
 mod rdev_keymap;
-
+mod tray;
 
 fn main() {
   let user_word: Arc<Mutex<String>> = Arc::new(Mutex::new(String::new()));
   let user_word_clone = Arc::clone(&user_word);
 
-  let callback = move |event: Event| {
-    word_correction(event, &user_word_clone);
-  };
-
-  if let Err(error) = listen(callback) {
-    println!("Error: {:?}", error)
+  enum UserEvent {
+    TrayIconEvent(tray_icon::TrayIconEvent),
+    MenuEvent(tray_icon::menu::MenuEvent),
   }
+
+  thread::spawn(|| {
+    let callback = move |event: Event| {
+      word_correction(event, &user_word_clone);
+    };
+
+    if let Err(error) = listen(callback) {
+      println!("Error: {:?}", error)
+    }
+  });
+
+  let tray_menu: Menu = Menu::new();
+  let tray_icon: Icon = build_tray_icon();
+
+  let _tray = TrayIconBuilder::new() // creates tray icon with a menu
+    .with_menu(Box::new(tray_menu))
+    .with_tooltip("system-tray - tray icon library")
+    .with_icon(tray_icon)
+    .build()
+    .unwrap();
+
+  let event_loop = EventLoopBuilder::<UserEvent>::with_user_event().build();
+
+  event_loop.run(move |event, _, control_flow| {
+    *control_flow = ControlFlow::Wait;
+
+    match event {
+      tao::event::Event::UserEvent(UserEvent::TrayIconEvent(event)) => {
+        println!("tray event, {:?}", event);
+      }
+      tao::event::Event::UserEvent(UserEvent::MenuEvent(event)) => {
+        println!("menu event, {:?}", event);
+      }
+      _ => (),
+    }
+  });
 }
 
 fn perform_correction(original_word: &str, corrected_word: &str) {
