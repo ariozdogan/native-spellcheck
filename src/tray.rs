@@ -1,6 +1,5 @@
 use tray_icon::Icon;
 
-
 pub fn build_tray_icon() -> Icon {
   let path: String = String::from("assets/icon.png");
   let img = image::open(path)
