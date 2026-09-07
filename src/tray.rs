@@ -1,8 +1,9 @@
 use tray_icon::Icon;
+use crate::resource_path;
 
 pub fn build_tray_icon() -> Icon {
-  let path: String = String::from("assets/icon.png");
-  let img = image::open(path)
+  let icon_path = resource_path::resource_path("assets/tray-icon.png");
+  let img = image::open(icon_path)
     .expect("Failed to open png")
     .into_rgba8();
   

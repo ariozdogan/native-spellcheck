@@ -11,3 +11,13 @@ objc2 = "0.6.4"
 rdev = "0.5.3"
 tao = "0.37.0"
 tray-icon = "0.24.2"
+
+[package.metadata.bundle]
+name = "SpellCheck"
+identifier = "com.ariozdogan.spellcheck"
+icon = ["assets/icons8-spellcheck-50.png"]
+version = "0.1.0"
+copyright = "Copyright (c) 2026 Ari Ozdogan"
+category = "public.app-category.utilities"
+short_description = "System-wide spell correction"
+resources = ["assets/tray-icon.png", "data/frequency_dictionary.txt"]

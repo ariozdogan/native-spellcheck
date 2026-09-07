@@ -1,12 +1,13 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::collections::HashMap;
-
+use crate::resource_path;
 
 pub fn load_dictionary() -> HashMap<String, u64> {
   let mut word_dictionary: HashMap<String, u64> = HashMap::new();
 
-  let file: File = File::open("data/google-10000-english-freq.txt").expect("Could not open file");
+  let dictionary_path = resource_path::resource_path("data/frequency_dictionary.txt");
+  let file: File = File::open(dictionary_path).expect("Could not open file");
   let reader: BufReader<File> = BufReader::new(file);
 
   for line in reader.lines() {

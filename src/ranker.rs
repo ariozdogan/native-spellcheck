@@ -1,7 +1,6 @@
 use std::collections::HashMap;
 use crate::{dictionary, edit_distance, edit_cost, ranker};
 
-
 pub fn combine_frequency_score(
   in_dictionary: HashMap<String, f64>, 
   word_dictionary: &HashMap<String, u64>) -> Vec<(String, u64, f64)> {

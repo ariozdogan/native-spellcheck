@@ -1,7 +1,6 @@
 use std::{collections::HashMap, usize};
 use crate::keyboard_map;
 
-
 pub fn deletion(user_input: String, mut edit_cost: f64) -> HashMap<String, f64> {
   let mut deletion_set: HashMap<String, f64> = HashMap::new();
   edit_cost += 2.0;
@@ -36,7 +35,7 @@ pub fn insertion(mut user_input: String, mut edit_cost: f64) -> HashMap<String, 
   insertion_set
 }
 
-pub fn substitution(mut user_input: String, mut edit_cost: f64) -> HashMap<String, f64> {
+pub fn substitution(mut user_input: String, edit_cost: f64) -> HashMap<String, f64> {
   let mut substitution_set: HashMap<String, f64> = HashMap::new();
   let string_length: usize = user_input.len();
   let mut char_adjacent: bool;
@@ -46,25 +45,25 @@ pub fn substitution(mut user_input: String, mut edit_cost: f64) -> HashMap<Strin
 
     for l in 'a'..='z' {
       let mut buf: [u8; 4] = [0; 4];
+      let mut temp_cost: f64 = edit_cost.clone();
       user_input.replace_range(c..c+1, l.encode_utf8(&mut buf));
 
       char_adjacent = keyboard_map::is_adjacent(original_input.chars().next().unwrap(), l);
 
       if char_adjacent {
-        edit_cost += 1.0;
+        temp_cost += 1.5;
       }
       else {
-        edit_cost += 2.0;
+        temp_cost += 2.0;
       }
 
-      substitution_set.insert(user_input.clone(), edit_cost);
+      substitution_set.insert(user_input.clone(), temp_cost);
 
 
       user_input.replace_range(c..c+1, &original_input);
 
     }
   }
-
   substitution_set
 }
 

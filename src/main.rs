@@ -1,4 +1,4 @@
-use std::{thread, time, sync::{Arc, Mutex}};
+use std::{thread, sync::{Arc, Mutex}};
 use rdev::{listen, Event};
 use tray_icon::{TrayIconBuilder, TrayIconEvent, Icon, menu::{Menu, MenuEvent, CheckMenuItem}};
 use tao::event_loop::{ControlFlow, EventLoopBuilder};
@@ -11,6 +11,12 @@ fn main() {
   let spellcheck_enabled: Arc<Mutex<bool>> = Arc::new(Mutex::new(false));
   let spellcheck_enabled_clone = Arc::clone(&spellcheck_enabled);
 
+  let last_correction: Arc<Mutex<Option<(String, String)>>> = Arc::new(Mutex::new(None));
+  let last_correction_clone = Arc::clone(&last_correction);
+
+  let pending_synthetic_events: Arc<Mutex<usize>> = Arc::new(Mutex::new(0));
+  let pending_synthetic_events_clone = Arc::clone(&pending_synthetic_events);
+
   enum UserEvent {
     TrayIconEvent(tray_icon::TrayIconEvent),
     MenuEvent(tray_icon::menu::MenuEvent),
@@ -18,7 +24,12 @@ fn main() {
 
   thread::spawn(move || {
     let callback = move |event: Event| {
-      word_correction::word_correction(event, &user_word_clone, &spellcheck_enabled_clone);
+      word_correction::word_correction(
+        event, 
+        &user_word_clone, 
+        &spellcheck_enabled_clone, 
+        &last_correction_clone,
+        &pending_synthetic_events_clone);
     };
 
     if let Err(error) = listen(callback) {

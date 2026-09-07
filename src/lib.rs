@@ -6,8 +6,7 @@ pub mod edit_cost;
 pub mod word_correction;
 pub mod rdev_keymap;
 pub mod tray;
-
-use std::collections::HashMap;
+pub mod resource_path;
 
 pub fn placeholder() -> String {
   "lib is wired up".to_string()
