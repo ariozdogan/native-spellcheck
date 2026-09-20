@@ -25,11 +25,9 @@ fn main() {
   thread::spawn(move || {
     let callback = move |event: Event| {
       word_correction::word_correction(
-        event, 
-        &user_word_clone, 
-        &spellcheck_enabled_clone, 
-        &last_correction_clone,
-        &pending_synthetic_events_clone);
+        event,
+        &user_word_clone,
+        &spellcheck_enabled_clone);
     };
 
     if let Err(error) = listen(callback) {
