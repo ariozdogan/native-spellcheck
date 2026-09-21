@@ -1,9 +1,14 @@
-use std::{time, thread, sync::{Arc, Mutex}};
+use std::{time, thread, sync::{Arc, Mutex}, collections::HashMap};
 use rdev::{Event, simulate, EventType, Key};
 use crate::{ranker, rdev_keymap};
 
 
-pub fn word_correction(event: Event, user_word: &Arc<Mutex<String>>, spellcheck_enabled: &Arc<Mutex<bool>>) {
+pub fn word_correction(
+  event: Event,
+  user_word: &Arc<Mutex<String>>,
+  spellcheck_enabled: &Arc<Mutex<bool>>,
+  word_dictionary: &HashMap<String, u64>,
+) {
   if !*spellcheck_enabled.lock().unwrap() {
     return;
   }
@@ -13,7 +18,7 @@ pub fn word_correction(event: Event, user_word: &Arc<Mutex<String>>, spellcheck_
       if !user_char.chars().all(char::is_alphabetic) {
         let mut buffer = user_word.lock().unwrap();
         let original_word = buffer.clone();
-        let corrected_word: String = ranker::handle_completed_word(&original_word.to_string());
+        let corrected_word: String = ranker::handle_completed_word(&original_word.to_string(), word_dictionary);
 
         if original_word != corrected_word {
           perform_correction(&original_word, &corrected_word);

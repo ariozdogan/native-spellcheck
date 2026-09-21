@@ -2,7 +2,7 @@ use std::{thread, sync::{Arc, Mutex}};
 use rdev::{listen, Event};
 use tray_icon::{TrayIconBuilder, TrayIconEvent, Icon, menu::{Menu, MenuEvent, CheckMenuItem}};
 use tao::event_loop::{ControlFlow, EventLoopBuilder};
-use spellcheck::{tray, word_correction};
+use spellcheck::{tray, word_correction, dictionary};
 
 fn main() {
   let user_word: Arc<Mutex<String>> = Arc::new(Mutex::new(String::new()));
@@ -22,12 +22,15 @@ fn main() {
     MenuEvent(tray_icon::menu::MenuEvent),
   }
 
+  let word_dictionary = dictionary::load_dictionary(); // loaded once; the correction pipeline never mutates it
+
   thread::spawn(move || {
     let callback = move |event: Event| {
       word_correction::word_correction(
         event,
         &user_word_clone,
-        &spellcheck_enabled_clone);
+        &spellcheck_enabled_clone,
+        &word_dictionary);
     };
 
     if let Err(error) = listen(callback) {
